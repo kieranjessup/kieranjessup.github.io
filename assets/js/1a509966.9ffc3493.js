@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkingofhearts=self.webpackChunkkingofhearts||[]).push([[1644],{7283:e=>{e.exports=JSON.parse('{"label":"hehe","permalink":"/blog/tags/hehe","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

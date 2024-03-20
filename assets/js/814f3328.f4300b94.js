@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkingofhearts=self.webpackChunkkingofhearts||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"First Blog Post","permalink":"/blog/test-slug","unlisted":false},{"title":"Second Blog Post","permalink":"/blog/test-slug-2","unlisted":false}]}')}}]);
