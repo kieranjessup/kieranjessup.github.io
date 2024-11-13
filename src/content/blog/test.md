@@ -13,3 +13,4 @@ ogImage: ""
 description: This is the example description of the example post.
 ---
 
+<img src="/assets/htb-forest-mitre.svg" />
