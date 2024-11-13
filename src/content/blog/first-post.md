@@ -1,16 +1,15 @@
 ---
-author: Sat Naing
-pubDatetime: 2022-09-23T15:22:00Z
-modDatetime: 2023-12-21T09:12:47.400Z
-title: Adding new posts in AstroPaper theme
-slug: adding-new-posts-in-astropaper-theme
+author: Kieran Jessup
+pubDatetime: 2024-11-13T15:22:00Z
+modDatetime: 2024-11-13T09:12:47.400Z
+title: First Post Test
+slug: first-post-test
 featured: true
 draft: false
 tags:
-  - docs
+  - docs, threat hunting
 description:
-  Some rules & recommendations for creating or adding new posts using AstroPaper
-  theme.
+  This is a test description to see how it works..
 ---
 
 Here are some rules/recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
