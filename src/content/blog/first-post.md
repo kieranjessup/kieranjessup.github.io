@@ -7,7 +7,7 @@ slug: first-post-test
 featured: true
 draft: false
 tags:
-  - docs, threat hunting
+  - docs, threat-hunting
 description:
   This is a test description to see how it works..
 ---
