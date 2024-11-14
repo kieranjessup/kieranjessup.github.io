@@ -1,8 +1,8 @@
 ---
-title: The title of the post
+title: My OSCP Journey
 author: Kieran
-pubDatetime: 2024-11-13
-slug: the-title-of-the-post
+pubDatetime: 2023-11-13
+slug: OSCP Certification
 featured: true
 draft: false
 tags:
