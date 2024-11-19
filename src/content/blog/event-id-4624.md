@@ -90,3 +90,9 @@ Monitoring Event ID 4624 and its logon types is essential for:
 - **Ensuring compliance**: Maintain logs for auditing and security reviews.
 
 ---
+
+## test code in blog
+
+```
+index=main sourcetype="WinEventLog:Security" EventCode=4624
+```
