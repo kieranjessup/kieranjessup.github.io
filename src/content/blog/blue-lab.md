@@ -12,7 +12,7 @@ ogImage: ""
 description: A small lab to test blue team activity for self learning
 ---
 
-<img src="/images/blue-lab.png" alt="a" >
+![something](@assets/images/blue-lab.png)
 
 SP01 = Splunk Server
 DC01 = Domain Controller
