@@ -12,5 +12,4 @@ ogImage: ""
 description: A small lab to test blue team activity for self learning
 ---
 
-![something1](../../public/assets/blue-lab.png)
 ![something2](../public/assets/blue-lab.png)
