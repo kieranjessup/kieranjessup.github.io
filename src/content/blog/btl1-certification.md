@@ -12,4 +12,4 @@ ogImage: ""
 description: This is the example description of the example post.
 ---
 
-<img src="../../assets/images/blue-team-certificate.png" alt="btl1 certificate" />
+![Alt text](images/blue-team-certificate.png)
