@@ -6,11 +6,10 @@ slug: OSCP Certification
 featured: true
 draft: false
 tags:
-  - some
-  - example
-  - tags
+  - certification
+  - red
+  - 2023
 ogImage: ""
 description: This is the example description of the example post.
 ---
 
-<img src="/assets/htb-forest-mitre.svg" />
