@@ -13,3 +13,6 @@ description: A small lab to test blue team activity for self learning
 ---
 
 ![something2](../public/assets/blue-lab.png)
+
+SP01 = Splunk Server
+DC01 = Domain Controller
