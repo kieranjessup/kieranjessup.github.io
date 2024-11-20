@@ -21,7 +21,7 @@ description: searching for indicators of compromise using known Volt Typhoon TTP
 4. finish this post
 
 ```
-PS C:\Users\root\Downloads> .\PurpleSharp_x64.exe /rhost DC01 /ruser purple.sharp /rpwd !QAZ1qaz!QAZ /d blue.lab /t T1059.001,T1059.003, T1053.005, T1569.002
+PS C:\Users\root\Downloads> .\PurpleSharp_x64.exe /rhost DC01 /ruser purple.sharp /rpwd <redacted> /d blue.lab /t T1059.001,T1059.003, T1053.005, T1569.002
 [+] Uploading and executing the Scout on \\DC01\C$\Windows\Temp\Scout.exe
 [+] Connecting to the Scout ...
 [+] OK
