@@ -11,3 +11,5 @@ tags:
 ogImage: ""
 description: This is the example description of the example post.
 ---
+
+![something](@assets/images/blue-team-certificate.png)
