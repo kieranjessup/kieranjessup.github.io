@@ -9,7 +9,7 @@ tags:
   - certification
   - blue
 ogImage: ""
-description: This is the example description of the example post.
+description: My experience with the BTL1 certification
 ---
 
 ## Preparing for the BTL1 Exam
