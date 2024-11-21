@@ -85,8 +85,28 @@ C:\WINDOWS\system32\drivers\str.sys
 ```
 ```C:\WINDOWS\system32\drivers\str.sys```
 
+**Q4) How many functions were hooked and by which module after running the ssdt plugin and filtering out legitimate SSDT entries using egrep -v '(ntoskrnl|win32k)'? (Format: XX, Module)**
 
+Using [ssdt](https://github.com/volatilityfoundation/volatility/wiki/Command-Reference#ssdt) and the egrep mentioned in the question;
 
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility$ python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x86 ssdt | egrep -v '(ntoskrnl|win32k)'
+```
+
+Looking at the output, we can see that 00004A2A is hooked 14 times by various functions within the Ntdll library
+
+eg: [NtDeleteValueKey](https://malapi.io/winapi/NtDeleteValueKey)
+
+```
+***
+Entry 0x0041: 0xff0d2487 (NtDeleteValueKey) owned by 00004A2A
+***
+```
+
+The answer is;
+```
+14, 00004A2A
+```
 
 
 
