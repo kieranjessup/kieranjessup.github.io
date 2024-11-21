@@ -44,5 +44,32 @@ Q1) Which process most likely contains injected code, providing its name, PID, a
 svchost.exe, 856, 0xc30000
 ```
 
+Q2) What dump file in the malfind output directory corresponds to the memory address identified for code injection? (Format: Output File Name)
+
+To help us find this, we can try;
+
+```
+python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x86 malfind -h | grep dump
+Volatility Foundation Volatility Framework 2.6.1
+  -D DUMP_DIR, --dump-dir=DUMP_DIR
+            
+```
+
+Now we can execute;
+
+```
+mkdir outputs && python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x86 malfind --dump-dir=outputs/
+```
+
+
+
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility/$ cd outputs
+ubuntu@ip-10-0-10-204:~/Desktop/volatility/outputs$ ls
+process.0x80ff88d8.0xc30000.dmp    process.0xff1ec978.0x33470000.dmp  process.0xff1ec978.0x71ee0000.ee0000.dmp process.0xff1ec978.0x793e0000.dmp
+```
+
+As seen by the filename, the memory address from Question 1 is in the filename: process.0x80ff88d8.0xc30000.dmp 
+
 
 
