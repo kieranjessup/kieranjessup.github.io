@@ -69,7 +69,7 @@ ubuntu@ip-10-0-10-204:~/Desktop/volatility/outputs$ ls
 process.0x80ff88d8.0xc30000.dmp    process.0xff1ec978.0x33470000.dmp  process.0xff1ec978.0x71ee0000.ee0000.dmp process.0xff1ec978.0x793e0000.dmp
 ```
 
-As seen by the filename, the memory address from Question 1 is in the filename: process.0x80ff88d8.0xc30000.dmp 
+Looking at each of the .dmps, the memory address from Question 1 is in the filename: process.0x80ff88d8.0xc30000.dmp 
 
 
 
