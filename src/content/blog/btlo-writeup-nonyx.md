@@ -38,13 +38,13 @@ Flags: CommitCharge: 9, MemCommit:1, PrivateMemory: 1, Protection 6
 
 From this we can extract the answer to question 1.
 
-Q1) Which process most likely contains injected code, providing its name, PID, and memory address? (Format: Name, PID, Address)
+**Q1) Which process most likely contains injected code, providing its name, PID, and memory address? (Format: Name, PID, Address)**
 
 ```
 svchost.exe, 856, 0xc30000
 ```
 
-Q2) What dump file in the malfind output directory corresponds to the memory address identified for code injection? (Format: Output File Name)
+**Q2) What dump file in the malfind output directory corresponds to the memory address identified for code injection? (Format: Output File Name)**
 
 To help us find this, we can try;
 
