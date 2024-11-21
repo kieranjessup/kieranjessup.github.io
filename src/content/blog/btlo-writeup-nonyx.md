@@ -61,7 +61,7 @@ Now we can execute;
 mkdir outputs && python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x86 malfind --dump-dir=outputs/
 ```
 
-
+This will create the directory outputs so that we can dump some files into it using volatility
 
 ```
 ubuntu@ip-10-0-10-204:~/Desktop/volatility/$ cd outputs
