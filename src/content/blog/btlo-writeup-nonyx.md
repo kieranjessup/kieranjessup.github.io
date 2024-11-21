@@ -25,7 +25,7 @@ The README indicates which profile we should use when running volatility, lets j
 python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x86 malfind
 ```
 
-After executing the above command we're given the some output to review, looking at each of the processes returned we find one that stands out with MZ in the magic bytes (4d 5a) [EXE](https://en.wikipedia.org/wiki/DOS_MZ_executable)
+After executing the above command we're given some output to review, looking at each of the processes returned we find one that stands out with MZ in the magic bytes (4d 5a) [EXE](https://en.wikipedia.org/wiki/DOS_MZ_executable)
 
 
 ```
