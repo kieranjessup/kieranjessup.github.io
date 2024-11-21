@@ -147,5 +147,5 @@ ubuntu@ip-10-0-10-204:~/Desktop/volatility$ sha256sum outputs/driver.ff0d1000.sy
 
 Bonus: run this hash through virustotal or other;
 
-[VirusTotal](@assets/images/btlo-writeup-nonyx-virustotal.png)
+![VirusTotal](@assets/images/btlo-writeup-nonyx-virustotal.png)
 
