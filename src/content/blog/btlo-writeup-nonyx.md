@@ -108,5 +108,42 @@ The answer is;
 14, 00004A2A
 ```
 
+**Q5) Using the modules (or modscan) plugin to identify the hooking driver from the ssdt output, what is the base address for the module found in Q4? (Format: Base Address)**
 
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility$ python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x6 modules
+```
+
+We can narrow down this output by using grep and limiting the results to the base address from Question 4;
+
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility$ python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x6 modules | grep 00004A2A
+Volatility Foundation Volatility Framework 2.6.1
+0xff375b08 00004A2A             0xff0d1000     0x83361 00004A2A
+```
+
+The answer is **0xff0d1000**
+
+**Q6) What is the hash for the malicious driver from the virtual memory image? (Format: SHA256)**
+
+To answer this question we can use the following volatility command, [moddump](https://github.com/volatilityfoundation/volatility/wiki/command-reference#moddump). This will extract a driver out so we can get the hash. We can use the base address from question 5 to narrow down the output.
+
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility$ python vol.py -f ../BlackEnergy.vnem --profile=WinXPSP2x6 moddump -b 0xff0d1000 -D outputs/
+Module Base Module Name          Result
+----------- -------------------- ------
+0x0ff0d1000 00004A2A             OK: driver.ff0d1000.sys
+
+```
+**driver.ff0d1000.sys**, now to get the hash we can use the command sha256sum on the driver's file;
+
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility$ sha256sum outputs/driver.ff0d1000.sys
+12b0407d9298e1a7154f5196db4a716052ca3acc70becf2d5489efd35f6c6ec8  outputs/driver.ff0d1000.sys
+```
+**12b0407d9298e1a7154f5196db4a716052ca3acc70becf2d5489efd35f6c6ec8**
+
+Bonus: run this hash through virustotal or other;
+
+[VirusTotal](@assets/images/btlo-writeup-nonyx-virustotal.png)
 
