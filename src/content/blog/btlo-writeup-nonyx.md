@@ -103,6 +103,8 @@ Entry 0x0041: 0xff0d2487 (NtDeleteValueKey) owned by 00004A2A
 ***
 ```
 
+![ssdt](@assets/images/btlo-writeup-nonyx-ssdt.png)
+
 The answer is;
 ```
 14, 00004A2A
