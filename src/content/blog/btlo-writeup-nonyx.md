@@ -69,7 +69,24 @@ ubuntu@ip-10-0-10-204:~/Desktop/volatility/outputs$ ls
 process.0x80ff88d8.0xc30000.dmp    process.0xff1ec978.0x33470000.dmp  process.0xff1ec978.0x71ee0000.ee0000.dmp process.0xff1ec978.0x793e0000.dmp
 ```
 
-Looking at each of the .dmps, the memory address from Question 1 is in the filename: process.0x80ff88d8.0xc30000.dmp 
+Looking at each of the .dmps, the memory address from Question 1 is in the filename: ```process.0x80ff88d8.0xc30000.dmp ```
+
+**Q3) Which full filename path is referenced in the strings output of the memory section identified by malfind as containing a portable executable (PE32/MZ header)? (Format: Filename Path)**
+
+If we run [strings](https://linux.die.net/man/1/strings) on the abovementioned .dmp file we should be able to review the output and find the filename;
+
+```
+ubuntu@ip-10-0-10-204:~/Desktop/volatility/outputs$ strings process.0x80ff88d8.0xc30000.dmp
+******
+xBILLY-DB5B96DD3_CC41CD50
+C:\WINDOWS\system32\drivers\str.sys
+3L3\3b3r3|3
+******
+```
+```C:\WINDOWS\system32\drivers\str.sys```
+
+
+
 
 
 
