@@ -1,5 +1,5 @@
 ---
-title: Searching for IOCs - Volt Typhoon
+title: Searching for IOCs - Volt Typhoon/Vanguard Panda
 author: Kieran
 pubDatetime: 2024-11-17
 slug: threat-hunt-volt-typhoon
@@ -8,6 +8,8 @@ draft: false
 tags:
   - windows
   - blue
+  - vanguard panda
+  - volt typhoon
 ogImage: ""
 description: searching for indicators of compromise using known Volt Typhoon TTPs
 ---
@@ -17,8 +19,10 @@ description: searching for indicators of compromise using known Volt Typhoon TTP
 1. create script to push VT TTPs through blue.lab
    1. PurpleSharp.exe can do this;
 2. map ttps
-3. dashboard them in splunk
-4. finish this post
+3. dashboard them in splunk, check detections in Falcon
+4. 27/11/2024, check Atomics for Vanguard Panda/Volt Typhoon
+   1. use; https://research.splunk.com/stories/volt_typhoon/?query=vol
+5. finish this post
 
 ```
 PS C:\Users\root\Downloads> .\PurpleSharp_x64.exe /rhost DC01 /ruser purple.sharp /rpwd <redacted> /d blue.lab /t T1059.001,T1059.003, T1053.005, T1569.002
