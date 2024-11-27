@@ -25,6 +25,9 @@ description: searching for indicators of compromise using known Volt Typhoon TTP
 5. finish this post
 
 ```
+
+# Testing PurpleSharp
+
 PS C:\Users\root\Downloads> .\PurpleSharp_x64.exe /rhost DC01 /ruser purple.sharp /rpwd <redacted> /d blue.lab /t T1059.001,T1059.003, T1053.005, T1569.002
 [+] Uploading and executing the Scout on \\DC01\C$\Windows\Temp\Scout.exe
 [+] Connecting to the Scout ...
@@ -47,4 +50,18 @@ PS C:\Users\root\Downloads> .\PurpleSharp_x64.exe /rhost DC01 /ruser purple.shar
 [+] Deleting \\DC01\C$\Windows\Temp\0001.dat
 [+] Deleting \\DC01\C$\Users\kieran.jessup\Downloads\Firefox_Installer.exe
 [+] Deleting \\DC01\C$\Users\kieran.jessup\Downloads\0001.dat
+
+# Testing Atomics
+
+PS C:\users\root\Desktop> $sess = New-PSSession -ComputerName DC01 -Credential BLUE\kieran.jessup
+PS C:\users\root\Desktop> Invoke-AtomicTest T1505.004 -Session $sess
+PathToAtomicsFolder = C:\AtomicRedTeam\atomics
+Executing test: T1505.004-1 Install IIS Module using AppCmd.exe
+MODULE object "DefaultDocumentModule_Atomic" added
+GLOBAL MODULE object "DefaultDocumentModule_Atomic" added
+Exit code: 0
+Done executing test: T1505.004-1 Install IIS Module using AppCmd.exe
+Executing test: T1505.004-2 Install IIS Module using PowerShell Cmdlet New-WebGlobalModule
+Done executing test: T1505.004-2 Install IIS Module using PowerShell Cmdlet New-WebGlobalModule
+
 ```
