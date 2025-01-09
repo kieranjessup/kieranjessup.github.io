@@ -12,7 +12,7 @@ tags:
 ogImage: ""
 description: My experience with the HTB Sherlock, Brutus.
 ---
-
+test
 
 ```
 ┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
