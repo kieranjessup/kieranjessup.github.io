@@ -12,7 +12,19 @@ tags:
 ogImage: ""
 description: My experience with the HTB Sherlock, Brutus.
 ---
-test
+
+For this challenge we are given a zip file containing 2 files;
+
+Contents of brutus.zip
+```
+┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
+└─# ls
+auth.log  wtmp
+```
+
+The `auth.log` file is a log file found in Unix-like operating systems, typically located in the /var/log directory. It records authentication-related events such as login attempts, sudo actions, and service authentications.
+
+The `wtmp` file is a binary log file in Unix-like systems that records login sessions, logout events, and system boots or shutdowns.
 
 ```
 ┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
