@@ -10,7 +10,7 @@ tags:
   - blue
   - sherlock
 ogImage: ""
-description: My experience with the HTB Sherlock, Brutus
+description: My experience with the HTB Sherlock, Brutus.
 ---
 
 
