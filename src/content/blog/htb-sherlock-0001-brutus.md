@@ -62,7 +62,36 @@ Mar  6 06:31:31 ip-172-31-35-28 sshd[2337]: Invalid user admin from 65.2.161.68 
 Mar  6 06:31:31 ip-172-31-35-28 sshd[2328]: Invalid user admin from 65.2.161.68 port 46390
 Mar  6 06:31:31 ip-172-31-35-28 sshd[2335]: Invalid user admin from 65.2.161.68 port 46460
 ```
+This gives us the answer to Task 1: `65.2.161.68`
 
+**Task 2) The brute force attempts were successful, and the attacker gained access to an account on the server. What is the username of this account?**
+
+If you skim the auth.log, you'll find it changes from failures to success at 6:32:44
+
+```
+Mar  6 06:31:42 ip-172-31-35-28 sshd[2423]: Failed password for backup from 65.2.161.68 port 34834 ssh2
+Mar  6 06:31:42 ip-172-31-35-28 sshd[2424]: Failed password for backup from 65.2.161.68 port 34856 ssh2
+Mar  6 06:31:44 ip-172-31-35-28 sshd[2423]: Connection closed by authenticating user backup 65.2.161.68 port 34834 [preauth]
+Mar  6 06:31:44 ip-172-31-35-28 sshd[2424]: Connection closed by authenticating user backup 65.2.161.68 port 34856 [preauth]
+Mar  6 06:32:39 ip-172-31-35-28 sshd[620]: exited MaxStartups throttling after 00:01:08, 21 connections dropped
+Mar  6 06:32:44 ip-172-31-35-28 sshd[2491]: Accepted password for root from 65.2.161.68 port 53184 ssh2
+```
+
+We can narrow it down further using grep.
+
+```
+┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
+└─# cat auth.log | grep Accepted
+Mar  6 06:19:54 ip-172-31-35-28 sshd[1465]: Accepted password for root from 203.101.190.9 port 42825 ssh2
+Mar  6 06:31:40 ip-172-31-35-28 sshd[2411]: Accepted password for root from 65.2.161.68 port 34782 ssh2
+Mar  6 06:32:44 ip-172-31-35-28 sshd[2491]: Accepted password for root from 65.2.161.68 port 53184 ssh2
+Mar  6 06:37:34 ip-172-31-35-28 sshd[2667]: Accepted password for cyberjunkie from 65.2.161.68 port 43260 ssh2
+```
+This gives us the answer to Task 2: `root`
+
+**Task 3) Can you identify the timestamp when the attacker manually logged in to the server to carry out their objectives?**
+
+To answer this question we'll take a look at wtmp, as wtmp logs sourceIP we can narrow it down to our known malicious Ip address.
 
 ```
 ┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
@@ -71,3 +100,26 @@ Utmp dump of wtmp
 [7] [02549] [ts/1] [root    ] [pts/1       ] [65.2.161.68         ] [65.2.161.68    ] [2024-03-06T06:32:45,387923+00:00]
 [7] [02667] [ts/1] [cyberjunkie] [pts/1       ] [65.2.161.68         ] [65.2.161.68    ] [2024-03-06T06:37:35,475575+00:00]
 ```
+
+Looking at the output, we can see that the login timestamp is very close to what is seen in auth.log
+
+This gives us the answer to Task 3: `2024-03-06 06:32:45`
+
+**Task 4) SSH login sessions are tracked and assigned a session number upon login. What is the session number assigned to the attacker's session for the user account from Question 2?**
+
+To answer this question we can review the login within auth.log
+
+```
+┌──(root㉿monster)-[/mnt/f/sherlocks/brutus]
+└─# cat auth.log | grep 06:32
+Mar  6 06:32:01 ip-172-31-35-28 CRON[2477]: pam_unix(cron:session): session opened for user confluence(uid=998) by (uid=0)
+Mar  6 06:32:01 ip-172-31-35-28 CRON[2476]: pam_unix(cron:session): session opened for user confluence(uid=998) by (uid=0)
+Mar  6 06:32:01 ip-172-31-35-28 CRON[2476]: pam_unix(cron:session): session closed for user confluence
+Mar  6 06:32:01 ip-172-31-35-28 CRON[2477]: pam_unix(cron:session): session closed for user confluence
+Mar  6 06:32:39 ip-172-31-35-28 sshd[620]: exited MaxStartups throttling after 00:01:08, 21 connections dropped
+Mar  6 06:32:44 ip-172-31-35-28 sshd[2491]: Accepted password for root from 65.2.161.68 port 53184 ssh2
+Mar  6 06:32:44 ip-172-31-35-28 sshd[2491]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  6 06:32:44 ip-172-31-35-28 systemd-logind[411]: New session 37 of user root.
+```
+
+This gives us the answer to task 4: `37`
