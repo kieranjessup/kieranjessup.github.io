@@ -9,7 +9,7 @@ tags:
   - windows
   - blue
 ogImage: ""
-description: EventID 4624 General Info
+description: EventID 4624 General Information
 ---
 
 # Event ID 4624: Successful Account Logon
