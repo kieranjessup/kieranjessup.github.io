@@ -1,7 +1,7 @@
 ---
 title: HTB Sherlock - Brutus
 author: Kieran
-pubDatetime: 2025-09-01
+pubDatetime: 2025-01-09
 slug: htb-sherlock-brutus
 featured: true
 draft: false
