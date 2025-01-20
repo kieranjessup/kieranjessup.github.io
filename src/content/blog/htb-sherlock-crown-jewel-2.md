@@ -53,8 +53,6 @@ This gives us the answer to Task 1: `2024-05-15 05:39:55`
 
 **Task 2) Identify the full path of the dumped NTDS file.**
 
-
-
 ```
 PS F:\Sherlocks\Crown-Jewel-2> Get-WinEvent -Path .\APPLICATION.evtx | Where-Object {($_.Id -eq 325 -or $_.Id -eq 327) } | Select-Object timecreated,id,message
 
@@ -93,7 +91,7 @@ PS F:\Sherlocks\Crown-Jewel-2> Get-WinEvent -Path .\APPLICATION.evtx | Where-Obj
 15/05/2024 5:39:58 AM 327 NTDS (3940,D,100) The database engine detached a database (2, C:\Windows\Temp\dump_tmp\Active Di...
 ```
 
-The answer for task 3: `2024-05-15 05:39:58`
+The answer for task 4: `2024-05-15 05:39:58`
 
 
 **Task 4) Event logs use event sources to track events coming from different sources. Which event source provides database status data like creation and detachment?**
@@ -113,5 +111,5 @@ ESENT        325 svchost (1676,D,35) DS_Token_DB: The database engine created a 
 ESENT        325 DFSRs (2328,D,35) \\.\C:\System Volume Information\DFSR\database_72E6_EF45_E6EF_865\dfsr.db: The database...
 ```
 
-The answer for Task 4 is: `ESENT`.
+The answer for Task 5 is: `ESENT`.
 
