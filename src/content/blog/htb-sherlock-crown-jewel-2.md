@@ -113,3 +113,157 @@ ESENT        325 DFSRs (2328,D,35) \\.\C:\System Volume Information\DFSR\databas
 
 The answer for Task 5 is: `ESENT`.
 
+**Task 6) When ntdsutil.exe is used to dump the database, it enumerates certain user groups to validate the privileges of the account being used. Which two groups are enumerated by the ntdsutil.exe process? Give the groups in alphabetical order joined by comma space.Event logs use event sources to track events coming from different sources.**
+
+For this task, we can use the logs and look for [Event ID 4799](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4799)
+
+Note: As there are many events that fall under 4799, we will focus on the ones just after the databased was dumped. (time fromt task 4)
+
+```
+PS F:\Sherlocks\Crown-Jewel-2> Get-WinEvent -Path .\SECURITY.evtx | Where-Object { ($_.Id -eq 4799) -and ($_.TimeCreated -gt [datetime]"2024-05-15T05:39:58Z") } | Select-Object -ExpandProperty message
+A security-enabled local group membership was enumerated.
+
+Subject:
+        Security ID:            S-1-5-18
+        Account Name:           DC01$
+        Account Domain:         FORELA
+        Logon ID:               0x3E7
+
+Group:
+        Security ID:            S-1-5-32-551
+        Group Name:             Backup Operators
+        Group Domain:           Builtin
+
+Process Information:
+        Process ID:             0xbf8
+        Process Name:           C:\Windows\System32\dfsrs.exe
+A security-enabled local group membership was enumerated.
+
+Subject:
+        Security ID:            S-1-5-18
+        Account Name:           DC01$
+        Account Domain:         FORELA
+        Logon ID:               0x3E7
+
+Group:
+        Security ID:            S-1-5-32-544
+        Group Name:             Administrators
+        Group Domain:           Builtin
+
+Process Information:
+        Process ID:             0xbf8
+        Process Name:           C:\Windows\System32\dfsrs.exe
+```
+
+The answer for task 6 is: `Administrators, Backup Operators`
+
+
+**Task 6) Now you are tasked to find the Login Time for the malicious Session. Using the Logon ID, find the Time when the user logon session started.**
+
+Using kerberos events we can determine who was logged in at the time of the database dumps.
+
+```
+PS F:\Sherlocks\Crown-Jewel-2> Get-WinEvent -Path .\security.evtx | Where-Object {($_.Id -eq 4768)} | format-list timecreated,id,message
+
+
+TimeCreated : 15/05/2024 5:36:31 PM
+Id          : 4768
+Message     : A Kerberos authentication ticket (TGT) was requested.
+
+              Account Information:
+                Account Name:           Administrator
+                Supplied Realm Name:    FORELA
+                User ID:                        S-1-5-21-3239415629-1862073780-2394361899-500
+
+              Service Information:
+                Service Name:           krbtgt
+                Service ID:             S-1-5-21-3239415629-1862073780-2394361899-502
+
+              Network Information:
+                Client Address:         ::1
+                Client Port:            0
+
+              Additional Information:
+                Ticket Options:         0x40810010
+                Result Code:            0x0
+                Ticket Encryption Type: 0x12
+                Pre-Authentication Type:        2
+
+              Certificate Information:
+                Certificate Issuer Name:
+                Certificate Serial Number:
+                Certificate Thumbprint:
+
+              Certificate information is only provided if a certificate was used for pre-authentication.
+
+              Pre-authentication types, ticket options, encryption types and result codes are defined in RFC 4120.
+
+TimeCreated : 15/05/2024 5:35:57 PM
+Id          : 4768
+Message     : A Kerberos authentication ticket (TGT) was requested.
+
+              Account Information:
+                Account Name:           DC01$
+                Supplied Realm Name:    FORELA.LOCAL
+                User ID:                        S-1-5-21-3239415629-1862073780-2394361899-1000
+
+              Service Information:
+                Service Name:           krbtgt
+                Service ID:             S-1-5-21-3239415629-1862073780-2394361899-502
+
+              Network Information:
+                Client Address:         ::1
+                Client Port:            0
+
+              Additional Information:
+                Ticket Options:         0x40810010
+                Result Code:            0x0
+                Ticket Encryption Type: 0x12
+                Pre-Authentication Type:        2
+
+              Certificate Information:
+                Certificate Issuer Name:
+                Certificate Serial Number:
+                Certificate Thumbprint:
+
+              Certificate information is only provided if a certificate was used for pre-authentication.
+
+              Pre-authentication types, ticket options, encryption types and result codes are defined in RFC 4120.
+
+TimeCreated : 15/05/2024 5:35:57 PM
+Id          : 4768
+Message     : A Kerberos authentication ticket (TGT) was requested.
+
+              Account Information:
+                Account Name:           DC01$
+                Supplied Realm Name:    FORELA.LOCAL
+                User ID:                        S-1-5-21-3239415629-1862073780-2394361899-1000
+
+              Service Information:
+                Service Name:           krbtgt
+                Service ID:             S-1-5-21-3239415629-1862073780-2394361899-502
+
+              Network Information:
+                Client Address:         ::1
+                Client Port:            0
+
+              Additional Information:
+                Ticket Options:         0x40810010
+                Result Code:            0x0
+                Ticket Encryption Type: 0x12
+                Pre-Authentication Type:        2
+
+              Certificate Information:
+                Certificate Issuer Name:
+                Certificate Serial Number:
+                Certificate Thumbprint:
+
+              Certificate information is only provided if a certificate was used for pre-authentication.
+
+              Pre-authentication types, ticket options, encryption types and result codes are defined in RFC 4120.
+```
+
+We can see that the user Administrator requested a TGT just prior to the database dump.
+
+The answer for Task 7 is: `2024-05-15 05:36:31`.
+
